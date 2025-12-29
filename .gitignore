@@ -1,0 +1,49 @@
+# Compiled class files
+*.class
+target/
+bin/
+
+# Log files
+*.log
+logs/
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+*.swp
+*.swo
+.project
+.classpath
+.settings/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Maven
+.mvn/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# Application specific
+application-local.yml
+*.env
+.env
+
+# Security - never commit secrets
+**/application-prod.yml
+!**/application-prod.yml.example
+
+# Docker volumes
+docker/data/
+
+# Build artifacts
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
