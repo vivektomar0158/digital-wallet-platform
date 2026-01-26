@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://wallet-postgres:5432/digital_wallet_db
+    url: jdbc:postgresql://localhost:5432/digital_wallet_db
     username: postgres
     password: 1234
     driver-class-name: org.postgresql.Driver
@@ -14,7 +14,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: validate  # Changed from 'update' to 'validate' for Flyway
+      ddl-auto: update
     show-sql: true
     properties:
       hibernate:
@@ -25,9 +25,9 @@ spring:
   flyway:
     enabled: true
     baseline-on-migrate: true
-    baseline-version: 3
+    baseline-version: 1
     locations: classpath:db/migration
-    validate-on-migrate: true
+    validate-on-migrate: false
 
   cloud:
     aws:
@@ -61,15 +61,8 @@ logging:
     com.digitalwallet.platform: DEBUG
     org.springframework.security: DEBUG
     org.springframework.web: DEBUG
-    com.digitalwallet.platform.security: DEBUG
-    com.digitalwallet.platform.util.JwtUtil: DEBUG
     org.hibernate.SQL: DEBUG
     org.hibernate.type.descriptor.sql: DEBUG
-    com.amazonaws: DEBUG
-    io.awspring.cloud: DEBUG
-    org.springframework.cloud.aws: DEBUG
-  pattern:
-    console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
 
 jwt:
   secret: c2VjdXJpdHktandrLXNlY3JldC1rZXktZm9yLWhzMjU2LXNpZ25pbmc=
@@ -80,12 +73,9 @@ springdoc:
     path: /api-docs
   swagger-ui:
     path: /swagger-ui.html
-    operations-sorter: method
-    tags-sorter: alpha
-    display-request-duration: true
 
 app:
-  name: Digital Wallet Platform
+  name: Digital Wallet Platform (DEV)
   version: 1.0.0
   s3:
-    bucket-name: wallet-bucket
+    bucket-name: wallet-bucket-dev
