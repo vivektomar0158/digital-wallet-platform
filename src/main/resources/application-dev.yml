@@ -31,16 +31,21 @@ spring:
 
   cloud:
     aws:
+      sqs:
+        enabled: true  # ✅ Enable SQS for local development
+      s3:
+        enabled: true  # ✅ Enable S3 for local development
       region:
         static: us-east-1
       credentials:
         access-key: test
         secret-key: test
+      endpoint: http://localhost:4566  # LocalStack default endpoint
       s3:
-        endpoint: ${SPRING_CLOUD_AWS_S3_ENDPOINT:http://localhost:4566}
+        endpoint: http://localhost:4566
         path-style-access-enabled: true
       sqs:
-        endpoint: ${SPRING_CLOUD_AWS_SQS_ENDPOINT:http://localhost:4566}
+        endpoint: http://localhost:4566
         listener:
           max-concurrent-messages: 10
 
@@ -48,13 +53,18 @@ management:
   endpoint:
     health:
       show-details: always
+  health:
+    sqs:
+      enabled: true  # ✅ Enable SQS health checks locally
+    s3:
+      enabled: true  # ✅ Enable S3 health checks locally
 
 server:
   port: 8080
   error:
     include-message: always
     include-binding-errors: always
-    include-stacktrace: never
+    include-stacktrace: on_param  # Changed to show stack traces when requested
 
 logging:
   level:
@@ -63,6 +73,7 @@ logging:
     org.springframework.web: DEBUG
     org.hibernate.SQL: DEBUG
     org.hibernate.type.descriptor.sql: DEBUG
+    io.awspring.cloud: DEBUG  # ✅ Debug AWS Spring Cloud integration
 
 jwt:
   secret: c2VjdXJpdHktandrLXNlY3JldC1rZXktZm9yLWhzMjU2LXNpZ25pbmc=

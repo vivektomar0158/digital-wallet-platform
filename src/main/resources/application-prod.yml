@@ -1,15 +1,15 @@
 spring:
   cloud:
     aws:
+      sqs:
+        enabled: false  # Disable SQS in production
+      s3:
+        enabled: false  # Disable S3 in production (if not needed)
       region:
         static: us-east-1
       credentials:
-        access-key: ${AWS_ACCESS_KEY:your-prod-access-key}
-        secret-key: ${AWS_SECRET_KEY:your-prod-secret-key}
-      s3:
-        endpoint: https://s3.us-east-1.amazonaws.com
-      sqs:
-        endpoint: https://sqs.us-east-1.amazonaws.com
+        access-key: dummy
+        secret-key: dummy
 
   mail:
     host: ${MAIL_HOST:smtp.gmail.com}
