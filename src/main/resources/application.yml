@@ -2,14 +2,6 @@ spring:
   application:
     name: digital-wallet-platform
 
-  profiles:
-    active: dev
-  
-  datasource:
-    url: jdbc:postgresql://localhost:5432/digital_wallet_db
-    username: postgres
-    password: 1234
-    driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
       ddl-auto: update
