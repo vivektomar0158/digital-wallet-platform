@@ -1,0 +1,28 @@
+spring:
+  cloud:
+    aws:
+      region:
+        static: us-east-1
+      credentials:
+        access-key: ${AWS_ACCESS_KEY:your-prod-access-key}
+        secret-key: ${AWS_SECRET_KEY:your-prod-secret-key}
+      s3:
+        endpoint: https://s3.us-east-1.amazonaws.com
+      sqs:
+        endpoint: https://sqs.us-east-1.amazonaws.com
+
+  mail:
+    host: ${MAIL_HOST:smtp.gmail.com}
+    port: ${MAIL_PORT:587}
+    username: ${MAIL_USERNAME:}
+    password: ${MAIL_PASSWORD:}
+
+logging:
+  level:
+    '[com.digitalwallet.platform]': INFO
+    '[org.springframework.security]': WARN
+    '[org.springframework.web]': WARN
+
+jwt:
+  secret: ${JWT_SECRET:c2VjdXJpdHktandrLXNlY3JldC1rZXktZm9yLWhzMjU2LXNpZ25pbmc=}
+  expiration: 86400000
