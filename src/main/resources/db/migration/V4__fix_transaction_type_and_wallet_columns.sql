@@ -68,5 +68,6 @@ COMMENT ON COLUMN wallets.total_daily_spent IS 'Total amount spent today for dai
 
 COMMENT ON COLUMN wallets.total_monthly_spent IS 'Total amount spent this month for monthly limit tracking';
 
--- FIXED: Added TABLE keyword before table name
-COMMENT ON CONSTRAINT chk_transaction_type ON TABLE transactions IS 'Ensures transaction type matches Java TransactionType enum';
+-- FIXED: Removed "ON TABLE" - PostgreSQL doesn't support this syntax for constraint comments
+-- Alternative: Use column comment instead
+COMMENT ON COLUMN transactions.type IS 'Transaction type - must match TransactionType enum: TRANSFER, DEPOSIT, WITHDRAWAL, REFUND, PAYMENT, CASHBACK, FEE';
