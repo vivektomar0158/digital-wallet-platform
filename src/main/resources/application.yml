@@ -4,6 +4,44 @@ spring:
 
   profiles:
     active: dev
+  
+  datasource:
+    url: jdbc:postgresql://localhost:5432/digital_wallet_db
+    username: postgres
+    password: 1234
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  cloud:
+    aws:
+      region:
+        static: us-east-1
+      credentials:
+        access-key: test
+        secret-key: test
+      endpoint: ${SPRING_CLOUD_AWS_ENDPOINT:http://localhost:4566}
+      s3:
+        endpoint: ${SPRING_CLOUD_AWS_S3_ENDPOINT:${SPRING_CLOUD_AWS_ENDPOINT:http://localhost:4566}}
+        path-style-access-enabled: true
+      sqs:
+        endpoint: ${SPRING_CLOUD_AWS_SQS_ENDPOINT:${SPRING_CLOUD_AWS_ENDPOINT:http://localhost:4566}}
+
+  mail:
+    host: localhost
+    port: 1025
+    username: user
+    password: password
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
 
 server:
   port: 8080
@@ -16,7 +54,31 @@ management:
     web:
       exposure:
         include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      show-details: when_authorized
+      show-components: always
+  health:
+    sqs:
+      enabled: false
+    s3:
+      enabled: false
+    mail:
+      enabled: false
   metrics:
     export:
       prometheus:
         enabled: true
+    tags:
+      application: digital-wallet-platform
+  prometheus:
+    metrics:
+      export:
+        enabled: true
+
+logging:
+  level:
+    '[org.springframework.cache]': INFO
+    '[org.springframework.data.redis]': INFO
+    '[com.digitalwallet.platform]': DEBUG
+    '[org.springframework.security]': INFO

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <style>
+        body { font-family: 'Arial', sans-serif; margin: 40px; color: #333; }
+        .header { text-align: center; border-bottom: 2px solid #4CAF50; padding-bottom: 20px; }
+        .logo { font-size: 24px; font-weight: bold; color: #4CAF50; }
+        .receipt-title { font-size: 20px; margin-top: 20px; text-transform: uppercase; }
+        .details { margin-top: 30px; }
+        .row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #eee; }
+        .label { font-weight: bold; color: #666; }
+        .amount-section { margin-top: 40px; text-align: center; background: #f9f9f9; padding: 20px; border-radius: 8px; }
+        .amount { font-size: 32px; font-weight: bold; color: #4CAF50; }
+        .footer { margin-top: 50px; font-size: 12px; color: #999; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">DIGITAL WALLET</div>
+        <div class="receipt-title">Transaction Receipt</div>
+    </div>
+
+    <div class="details">
+        <div class="row">
+            <span class="label">Reference ID:</span>
+            <span th:text="${referenceId}">TXN123456789</span>
+        </div>
+        <div class="row">
+            <span class="label">Date:</span>
+            <span th:text="${timestamp}">2026-01-08 22:30</span>
+        </div>
+        <div class="row">
+            <span class="label">Type:</span>
+            <span th:text="${type}">TRANSFER</span>
+        </div>
+        <div class="row">
+            <span class="label">Sender:</span>
+            <span th:text="${sender}">John Doe</span>
+        </div>
+        <div class="row">
+            <span class="label">Receiver Wallet:</span>
+            <span th:text="${receiverWallet}">WAL0987654321</span>
+        </div>
+        <div class="row">
+            <span class="label">Status:</span>
+            <span th:text="${status}">COMPLETED</span>
+        </div>
+    </div>
+
+    <div class="amount-section">
+        <div class="label">Amount</div>
+        <div class="amount" th:text="${amount} + ' ' + ${currency}">100.00 USD</div>
+    </div>
+
+    <div class="footer">
+        <p>This is a computer-generated document. No signature required.</p>
+        <p>Thank you for using Digital Wallet Platform.</p>
+    </div>
+</body>
+</html>
