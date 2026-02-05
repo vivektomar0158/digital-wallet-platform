@@ -1,7 +1,7 @@
 # Digital Wallet & P2P Payment Platform
 
-<img width="450" height="450" alt="Screenshot 2026-02-05 133645" src="https://github.com/user-attachments/assets/b4d0f226-4f16-4f78-89bf-77a4d38305dc" />
-<img width="450" height="450" alt="Screenshot 2026-02-05 133656" src="https://github.com/user-attachments/assets/86b8be02-e4b4-41b2-bca0-d0c293beda94" />
+<img width="400" height="400" alt="Screenshot 2026-02-05 133645" src="https://github.com/user-attachments/assets/b4d0f226-4f16-4f78-89bf-77a4d38305dc" />
+<img width="400" height="400" alt="Screenshot 2026-02-05 133656" src="https://github.com/user-attachments/assets/86b8be02-e4b4-41b2-bca0-d0c293beda94" />
 
 ## Overview
 
