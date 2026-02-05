@@ -9,18 +9,14 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-@ConditionalOnProperty(
-    name = "spring.cloud.aws.sqs.enabled",
-    havingValue = "true"
-)
-public class SqsTransactionNotificationService
-    implements TransactionNotificationService {
+@ConditionalOnProperty(name = "spring.cloud.aws.sqs.enabled", havingValue = "true")
+public class SqsTransactionNotificationService implements TransactionNotificationService {
 
-    private final SqsTemplate sqsTemplate;
+  private final SqsTemplate sqsTemplate;
 
-    @Override
-    public void sendTransactionNotification(String message) {
-        sqsTemplate.send("transaction-queue", message);
-        log.info("Transaction sent to SQS: {}", message);
-    }
+  @Override
+  public void sendTransactionNotification(String message) {
+    sqsTemplate.send("transaction-queue", message);
+    log.info("Transaction sent to SQS: {}", message);
+  }
 }

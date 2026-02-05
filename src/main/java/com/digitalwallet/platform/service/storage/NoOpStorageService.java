@@ -14,7 +14,9 @@ public class NoOpStorageService implements ObjectStorageService {
 
   @Override
   public String upload(byte[] data, String key, String contentType) {
-    log.warn("S3 disabled — skipping upload for {} ({} bytes, type={})", key,
+    log.warn(
+        "S3 disabled — skipping upload for {} ({} bytes, type={})",
+        key,
         data != null ? data.length : 0,
         contentType);
     // Pretend we stored it locally or just return a logical handle.

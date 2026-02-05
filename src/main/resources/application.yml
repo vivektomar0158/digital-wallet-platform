@@ -3,6 +3,9 @@ spring:
     name: digital-wallet-platform
 
   datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/digital_wallet_db}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD:1234}
     driver-class-name: org.postgresql.Driver
     hikari:
       maximum-pool-size: 10
@@ -12,9 +15,15 @@ spring:
       idle-timeout: 600000
       max-lifetime: 1800000
 
+  data:
+    redis:
+      host: ${SPRING_REDIS_HOST:localhost}
+      port: ${SPRING_REDIS_PORT:6379}
+      password: ${SPRING_REDIS_PASSWORD:}
+
   jpa:
     hibernate:
-      ddl-auto: validate  # Changed from 'update' to 'validate' for production safety
+      ddl-auto: ${SPRING_JPA_HIBERNATE_DDL_AUTO:validate}
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
@@ -30,10 +39,10 @@ spring:
   cloud:
     aws:
       region:
-        static: us-east-1
+        static: ${SPRING_CLOUD_AWS_REGION_STATIC:us-east-1}
       credentials:
-        access-key: test
-        secret-key: test
+        access-key: ${SPRING_CLOUD_AWS_CREDENTIALS_ACCESS_KEY:test}
+        secret-key: ${SPRING_CLOUD_AWS_CREDENTIALS_SECRET_KEY:test}
       endpoint: ${SPRING_CLOUD_AWS_ENDPOINT:http://localhost:4566}
       s3:
         endpoint: ${SPRING_CLOUD_AWS_S3_ENDPOINT:${SPRING_CLOUD_AWS_ENDPOINT:http://localhost:4566}}
@@ -42,10 +51,10 @@ spring:
         endpoint: ${SPRING_CLOUD_AWS_SQS_ENDPOINT:${SPRING_CLOUD_AWS_ENDPOINT:http://localhost:4566}}
 
   mail:
-    host: localhost
-    port: 1025
-    username: user
-    password: password
+    host: ${SPRING_MAIL_HOST:localhost}
+    port: ${SPRING_MAIL_PORT:1025}
+    username: ${SPRING_MAIL_USERNAME:user}
+    password: ${SPRING_MAIL_PASSWORD:password}
     properties:
       mail:
         smtp:
@@ -94,3 +103,7 @@ logging:
     '[org.springframework.data.redis]': INFO
     '[com.digitalwallet.platform]': DEBUG
     '[org.springframework.security]': INFO
+
+jwt:
+  secret: ${JWT_SECRET:c2VjdXJpdHktandrLXNlY3JldC1rZXktZm9yLWhzMjU2LXNpZ25pbmc=}
+  expiration: ${JWT_EXPIRATION:86400000}

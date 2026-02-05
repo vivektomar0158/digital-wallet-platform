@@ -9,13 +9,11 @@ import org.springframework.stereotype.Service;
 @ConditionalOnProperty(
     name = "spring.cloud.aws.sqs.enabled",
     havingValue = "false",
-    matchIfMissing = true
-)
-public class NoOpTransactionNotificationService
-    implements TransactionNotificationService {
+    matchIfMissing = true)
+public class NoOpTransactionNotificationService implements TransactionNotificationService {
 
-    @Override
-    public void sendTransactionNotification(String message) {
-        log.debug("SQS disabled — notification skipped: {}", message);
-    }
+  @Override
+  public void sendTransactionNotification(String message) {
+    log.debug("SQS disabled — notification skipped: {}", message);
+  }
 }

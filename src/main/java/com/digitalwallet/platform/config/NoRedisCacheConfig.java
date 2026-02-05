@@ -10,8 +10,8 @@ import org.springframework.context.annotation.Profile;
 /**
  * Fallback cache configuration used when no Redis-backed CacheManager has been defined.
  *
- * This ensures annotations that reference "redisCacheManager" still resolve even if
- * Redis is not configured (e.g. in environments without a Redis instance).
+ * <p>This ensures annotations that reference "redisCacheManager" still resolve even if Redis is not
+ * configured (e.g. in environments without a Redis instance).
  */
 @Configuration
 @Profile("!test")
